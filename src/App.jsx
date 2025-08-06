@@ -1,8 +1,11 @@
 import React from 'react'
+import ToDoList from './components/ToDoList'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div className='flex flex-col items-center justify-center min-h-screen'>
+    <ToDoList/>
+    </div>
   )
 }
 
