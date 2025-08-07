@@ -23,7 +23,7 @@ const todoSlice = createSlice({
         toggleTodo: (state,action) => {
             const todo = state.find((todo)=> todo.id === action.payload)
             if(todo){
-                todo.completed = true
+                todo.completed = !todo.completed
             }
         }
     }

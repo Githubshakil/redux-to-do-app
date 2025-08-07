@@ -27,7 +27,7 @@ const ToDoList = () => {
           onChange={(e) => setText(e.target.value)}
           type="text"
           placeholder="add a todo"
-          className="px-4 py-2 border border-gray-300 rounded placeholder:text-gray-400 text-black"
+          className="px-4 py-2 border border-gray-300 rounded placeholder:text-gray-400 text-black dark:text-white"
         />
         <button
           onClick={handleAddTask}
@@ -40,13 +40,22 @@ const ToDoList = () => {
       <div>
         <ul className="w-full max-w-md">
           {todos.length > 0 ? (
-            todos.map((todo) => (
+            todos.map((todo, idx) => (
               <li
                 key={todo.id}
                 className={`flex justify-start items-center px-4 py-2 border-b space-x-4 cursor-pointer `}
               >
-                <span onClick={()=> dispatch(toggleTodo(todo.id))} className={`${todo.completed ? 'line-through text-gray-500 cursor-pointer': ''}`}>{todo.text}</span>
-                <button onClick={()=>dispatch(removeTodo(todo.id))} className="text-red-500 hover:underline cursor-pointer">Remove</button>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => dispatch(toggleTodo(todo.id))}
+                  className="mr-2"
+                />
+                <span>{idx + 1}.</span>
+                <span className={`${todo.completed ? 'line-through text-gray-500' : ''}`}>
+                  {todo.text}
+                </span>
+                <button onClick={() => dispatch(removeTodo(todo.id))} className="text-red-500 hover:underline cursor-pointer">Remove</button>
               </li>
             ))
           ) : (
